@@ -57,3 +57,9 @@ typings/
 # dotenv environment variables file
 .env
 
+/.idea/inspectionProfiles/Project_Default.xml
+/.idea/.gitignore
+/.idea/misc.xml
+/.idea/modules.xml
+/.idea/vcs.xml
+/.idea/vue-intermediate.iml
