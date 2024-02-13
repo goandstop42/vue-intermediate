@@ -3,30 +3,44 @@
     <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo">
     <span class="addContainer"  @click="addTodo">
          <i class="fas fa-plus addBtn" ></i>
-
     </span>
+    <AlertModal :show="showModal" @close="showModal = false">
+      <template #header>
+        <h3>경고
+          <i class="closeModalBtn fa-solid fa-xmark" @click="showModal = false"></i>
+        </h3>
+      </template>
+      <template #body>
+        <h3>아무것도 입력하지 않았음</h3>
+      </template>
+    </AlertModal>
   </div>
 </template>
 
 <script>
-
+import AlertModal from "@/components/common/AlertModal.vue";
 export default {
   data: function () {
     return {
-      newTodoItem: ""
+      newTodoItem: "",
+      showModal: false
     }
   },
   methods: {
     addTodo: function () {
       if(this.newTodoItem !== ''){
-        var obj ={completed: false, item: this.newTodoItem}
-        localStorage.setItem(this.newTodoItem, JSON.stringify(obj))
+        this.$emit('addTodoItem', this.newTodoItem)
         this.clearInput();
+      } else {
+        this.showModal = !this.showModal;
       }
     },
     clearInput() {
       this.newTodoItem = "";
     }
+  },
+  components: {
+    AlertModal
   }
 }
 </script>
@@ -59,4 +73,5 @@ input:focus {
 .closeModalBtn {
   color: #42b983;
 }
+
 </style>
