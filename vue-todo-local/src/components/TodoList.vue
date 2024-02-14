@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ul>
+    <TransitionGroup name="list" tag="ul">
       <li v-for="(todoItem, index) in propsdata" v-bind:key="todoItem">
         <i class="checkBtn fas fa-check" v-bind:class="{checkBtnCompleted: todoItem.completed}"
            v-on:click="toggleComplete(todoItem,index)"></i>
@@ -9,7 +9,7 @@
          <i class="fa-solid fa-trash"></i>
         </span>
       </li>
-    </ul>
+    </TransitionGroup>
   </div>
 </template>
 <script>
@@ -72,12 +72,12 @@ li {
 
 /* transition css */
 .list-enter-active, .list-leave-active {
-  transition: all 1s;
+  transition: all 0.5s;
 }
 
-.list-enter, .list-leave-to /* .list-leave-active below version 2.1.8 */
-{
+.list-enter-from,
+.list-leave-to {
   opacity: 0;
-  transform: translateY(30px);
+  transform: translateX(30px);
 }
 </style>
